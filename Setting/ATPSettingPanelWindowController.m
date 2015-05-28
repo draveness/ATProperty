@@ -27,7 +27,7 @@
 }
 
 - (IBAction)btnEnabledPressed:(NSButton *)sender {
-    [[ATPropertySetting defaultSetting] setNilValueForKey:sender.state];
+    [[ATPropertySetting defaultSetting] setEnabled:sender.state];
 }
 
 - (IBAction)btnUseNonatomicPressed:(NSButton *)sender {
