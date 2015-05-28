@@ -15,6 +15,9 @@ extern NSString *const kATPCopyTriggerString;
 
 @interface ATPropertySetting : NSObject
 
++ (ATPropertySetting *)defaultSetting;
+
 @property (nonatomic, assign) BOOL useNonatomic;
+@property (nonatomic, assign) BOOL atomicityPrefix;
 
 @end
