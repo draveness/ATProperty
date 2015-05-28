@@ -1,4 +1,4 @@
-# ATProperty [![Build Status](https://travis-ci.org/Draveness/SpaceShuttle.svg?branch=master)](https://travis-ci.org/Draveness/SpaceShuttle)
+# ATProperty [![Build Status](https://travis-ci.org/Draveness/ATProperty.svg?branch=master)](https://travis-ci.org/Draveness/ATProperty)
 
 ## What is this?
 
