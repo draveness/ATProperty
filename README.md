@@ -1,10 +1,10 @@
-# ATProperty
+# ATProperty [![Build Status](https://travis-ci.org/Draveness/SpaceShuttle.svg?branch=master)](https://travis-ci.org/Draveness/SpaceShuttle)
 
 ## What is this?
 
 This is a convenient and fast approach to create property. You do not need to type `@property` and `nonatomic` when you declare a property.
 
-You just needs to type `@s` this.
+You just needs to type `@s` like this.
 
 ![](Demo.gif)
 
