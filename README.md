@@ -6,7 +6,7 @@ This is a convenient and fast approach to create property. You do not need to ty
 
 You just needs to type `@s` like this.
 
-![](Demo.gif)
+![Demo](./image/Demo.gif)
 
 ## How to install?
 
@@ -53,7 +53,7 @@ You can customize the `ATProperty` plugin in menu:
 Edit => ATProperty
 ```
 
-![ATProperty Setting](setting.png)
+![ATProperty Setting](./image/setting.png)
 
 You can disabled it by clicking the checkbox ahead `Enabled` label. Changing default atomicity to atomic or modifier symbol order are also allowed.
 
