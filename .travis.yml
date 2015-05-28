@@ -1,3 +1,2 @@
 language: objective-c
 xcode_project: ATProperty.xcodeproj
-xcode_scheme: ATProperty
