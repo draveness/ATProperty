@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ATPropertySettingPanelWindowController : NSWindowController
+@interface ATPSettingPanelWindowController : NSWindowController
 
 @end

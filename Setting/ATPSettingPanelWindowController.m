@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 DeltaX. All rights reserved.
 //
 
-#import "ATPropertySettingPanelWindowController.h"
+#import "ATPSettingPanelWindowController.h"
 
-@interface ATPropertySettingPanelWindowController ()
+@interface ATPSettingPanelWindowController ()
 
 @end
 
-@implementation ATPropertySettingPanelWindowController
+@implementation ATPSettingPanelWindowController
 
 - (void)windowDidLoad {
     [super windowDidLoad];

@@ -12,12 +12,14 @@
 #import "NSTextView+TextGetter.h"
 #import "NSString+TextGetter.h"
 #import "ATPropertySetting.h"
+#import "ATPSettingPanelWindowController.h"
 
 static ATProperty *sharedPlugin;
 
 @interface ATProperty()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
+@property (nonatomic, strong) ATPSettingPanelWindowController *settingPanel;
 
 @end
 
@@ -143,13 +145,15 @@ static ATProperty *sharedPlugin;
     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
     if (menuItem) {
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"@property" action:@selector(doMenuAction) keyEquivalent:@""];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"@property" action:@selector(showSettingPanel) keyEquivalent:@""];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
     }
 }
 
-- (void)doMenuAction {
+- (void)showSettingPanel {
+    self.settingPanel = [[ATPSettingPanelWindowController alloc] initWithWindowNibName:@"ATPSettingPanelWindowController"];
+    [self.settingPanel showWindow:self.settingPanel];
 }
 
 - (void)dealloc {
