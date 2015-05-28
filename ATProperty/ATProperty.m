@@ -10,9 +10,8 @@
 #import "ATTextResult.h"
 #import "ATPropertySetting.h"
 #import "NSTextView+TextGetter.h"
-#import "NSString+TextGetter.h"
-#import "ATPropertySetting.h"
 #import "ATPSettingPanelWindowController.h"
+#import "ATPStringGenerator.h"
 
 static ATProperty *sharedPlugin;
 
@@ -55,97 +54,19 @@ static ATProperty *sharedPlugin;
     if ([[notification object] isKindOfClass:[NSTextView class]]) {
         NSTextView *textView = (NSTextView *)[notification object];
         ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];
-        if ([self shouldTrigger:currentLineResult.string]) {
+        if ([ATPStringGenerator shouldTrigger:currentLineResult.string]) {
             NSUInteger length = currentLineResult.string.length;
             [textView setSelectedRange:NSMakeRange(textView.at_currentCurseLocation - length, length)];
-            [textView insertText:[self insertTextWithType:currentLineResult.string]];
+            [textView insertText:[ATPStringGenerator insertTextWithType:currentLineResult.string]];
         }
     }
-}
-
-- (BOOL)shouldTrigger:(NSString *)currentLineResult {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:@[kATPStrongTriggerString, kATPWeakTriggerString, kATPCopyTriggerString, kATPAssignTriggerString]];
-    NSMutableArray *readWriteArray = [[NSMutableArray alloc] init];
-    for (NSString *string in array) {
-        NSString *readTriggerString = [NSString stringWithFormat:@"@r%@",[string substringFromIndex:1]];
-        NSString *writeTriggerString = [NSString stringWithFormat:@"@x%@",[string substringFromIndex:1]];
-        [readWriteArray addObject:readTriggerString];
-        [readWriteArray addObject:writeTriggerString];
-    }
-    [array addObjectsFromArray:readWriteArray];
-    for (NSString *string in array) {
-        if ([currentLineResult isEqualToString:string]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-- (NSString *)insertTextWithType:(NSString *)type {
-    NSMutableString *ms = [[NSMutableString alloc] initWithString:@"@property "];
-    [ms appendString:[self modifiedSymbolTupleWithType:type]];
-    return ms;
-}
-
-- (NSString *)modifiedSymbolTupleWithType:(NSString *)type {
-    NSMutableString *string = [[NSMutableString alloc] initWithString:@"("];
-    if ([[ATPropertySetting defaultSetting] useNonatomic]) {
-        [string appendString:@"nonatomic"];
-    } else {
-        [string appendString:@"atomic"];
-    }
-
-    if ([[ATPropertySetting defaultSetting] atomicityPrefix]) {
-        if ([type isTriggerString:kATPStrongTriggerString]) {
-            [string appendString:@", strong"];
-        } else if ([type isTriggerString:kATPWeakTriggerString]) {
-            [string appendString:@", weak"];
-        } else if ([type isTriggerString:kATPCopyTriggerString]) {
-            [string appendString:@", copy"];
-        } else if ([type isTriggerString:kATPAssignTriggerString]) {
-            [string appendString:@", assign"];
-        }
-    } else {
-        if ([type isTriggerString:kATPStrongTriggerString]) {
-            [string insertString:@"strong, " atIndex:1];
-        } else if ([type isTriggerString:kATPWeakTriggerString]) {
-            [string insertString:@"weak, " atIndex:1];
-        } else if ([type isTriggerString:kATPCopyTriggerString]) {
-            [string insertString:@"copy, " atIndex:1];
-        } else if ([type isTriggerString:kATPAssignTriggerString]) {
-            [string insertString:@"assign, " atIndex:1];
-        }
-    }
-
-    if ([self isReadonly:type]) {
-        [string appendString:@", readonly) "];
-    } else if ([self isReadWrite:type]) {
-        [string appendString:@", readwrite) "];
-    } else {
-        [string appendString:@") "];
-    }
-    if ([type isEqualToString:kATPAssignTriggerString]) {
-        [string appendString:@"<#type#> <#value#>;"];
-    } else {
-        [string appendString:@"<#type#> *<#value#>;"];
-    }
-    return string;
-}
-
-
-- (BOOL)isReadonly:(NSString *)type {
-    return [[type substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"r"];
-}
-
-- (BOOL)isReadWrite:(NSString *)type {
-    return [[type substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"x"];
 }
 
 - (void)addMenuItem {
     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
     if (menuItem) {
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"@property" action:@selector(showSettingPanel) keyEquivalent:@""];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"ATProperty" action:@selector(showSettingPanel) keyEquivalent:@""];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
     }
