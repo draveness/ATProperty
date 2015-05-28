@@ -12,6 +12,8 @@ You just needs to type `@s` like this.
 
 The best way to install this is use [Alcatraz](http://alcatraz.io/). Install Alcatraz followed by the instruction, restart your Xcode. You can find `ATProperty` in the list. Just click the install button.
 
+![Manager](./image/manager.png)
+
 You can also clone the repo and build the target. And the plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. Relaunch Xcode, and you can use this to create property.
 
 ## Usage
