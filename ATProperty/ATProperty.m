@@ -51,7 +51,7 @@ static ATProperty *sharedPlugin;
 }
 
 - (void)textStorageDidChange:(NSNotification *)notification {
-    if ([[notification object] isKindOfClass:[NSTextView class]]) {
+    if ([[notification object] isKindOfClass:[NSTextView class]] && [[ATPropertySetting defaultSetting] enabled]) {
         NSTextView *textView = (NSTextView *)[notification object];
         ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];
         if ([ATPStringGenerator shouldTrigger:currentLineResult.string]) {
