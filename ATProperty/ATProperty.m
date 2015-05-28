@@ -48,7 +48,6 @@ static ATProperty *sharedPlugin;
 }
 
 - (void) textStorageDidChange:(NSNotification *)notification {
-
     if ([[notification object] isKindOfClass:[NSTextView class]]) {
         NSTextView *textView = (NSTextView *)[notification object];
         ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];
@@ -60,9 +59,16 @@ static ATProperty *sharedPlugin;
     }
 }
 
-
 - (BOOL)shouldTrigger:(NSString *)currentLineResult {
-    NSArray *array = @[kATPStrongTriggerString, kATPWeakTriggerString, kATPCopyTriggerString, kATPAssignTriggerString];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:@[kATPStrongTriggerString, kATPWeakTriggerString, kATPCopyTriggerString, kATPAssignTriggerString]];
+    NSMutableArray *readWriteArray = [[NSMutableArray alloc] init];
+    for (NSString *string in array) {
+        NSString *readTriggerString = [NSString stringWithFormat:@"@r%@",[string substringFromIndex:1]];
+        NSString *writeTriggerString = [NSString stringWithFormat:@"@x%@",[string substringFromIndex:1]];
+        [readWriteArray addObject:readTriggerString];
+        [readWriteArray addObject:writeTriggerString];
+    }
+    [array addObjectsFromArray:readWriteArray];
     for (NSString *string in array) {
         if ([currentLineResult isEqualToString:string]) {
             return YES;
@@ -124,13 +130,27 @@ static ATProperty *sharedPlugin;
             }
         }
     }
-    [string appendString:@") "];
+    if ([self isReadonly:type]) {
+        [string appendString:@", readonly) "];
+    } else if ([self isReadWrite:type]) {
+        [string appendString:@", readwrite) "];
+    } else {
+        [string appendString:@") "];
+    }
     if ([type isEqualToString:kATPAssignTriggerString]) {
         [string appendString:@"<#type#> <#value#>;"];
     } else {
         [string appendString:@"<#type#> *<#value#>;"];
     }
     return string;
+}
+
+- (BOOL)isReadonly:(NSString *)type {
+    return [[type substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"r"];
+}
+
+- (BOOL)isReadWrite:(NSString *)type {
+    return [[type substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"x"];
 }
 
 - (void)addMenuItem {
