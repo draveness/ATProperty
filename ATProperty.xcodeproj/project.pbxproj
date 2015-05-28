@@ -11,6 +11,9 @@
 		18194CAE1B169D94007A3FB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18194CAD1B169D94007A3FB0 /* Foundation.framework */; };
 		18194CB31B169D94007A3FB0 /* ATProperty.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 18194CB21B169D94007A3FB0 /* ATProperty.xcscheme */; };
 		18194CB61B169D94007A3FB0 /* ATProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 18194CB51B169D94007A3FB0 /* ATProperty.m */; };
+		18194CC31B16A122007A3FB0 /* ATTextResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18194CC21B16A122007A3FB0 /* ATTextResult.m */; };
+		18194CC61B16A13E007A3FB0 /* NSTextView+TextGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18194CC51B16A13E007A3FB0 /* NSTextView+TextGetter.m */; };
+		18BA9DFD1B16A24F00F471AF /* NSString+TextGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA9DFC1B16A24F00F471AF /* NSString+TextGetter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,12 @@
 		18194CB21B169D94007A3FB0 /* ATProperty.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ATProperty.xcscheme; path = ATProperty.xcodeproj/xcshareddata/xcschemes/ATProperty.xcscheme; sourceTree = SOURCE_ROOT; };
 		18194CB41B169D94007A3FB0 /* ATProperty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATProperty.h; sourceTree = "<group>"; };
 		18194CB51B169D94007A3FB0 /* ATProperty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATProperty.m; sourceTree = "<group>"; };
+		18194CC11B16A122007A3FB0 /* ATTextResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTextResult.h; sourceTree = "<group>"; };
+		18194CC21B16A122007A3FB0 /* ATTextResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTextResult.m; sourceTree = "<group>"; };
+		18194CC41B16A13E007A3FB0 /* NSTextView+TextGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+TextGetter.h"; sourceTree = "<group>"; };
+		18194CC51B16A13E007A3FB0 /* NSTextView+TextGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+TextGetter.m"; sourceTree = "<group>"; };
+		18BA9DFB1B16A24F00F471AF /* NSString+TextGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextGetter.h"; sourceTree = "<group>"; };
+		18BA9DFC1B16A24F00F471AF /* NSString+TextGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextGetter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +74,7 @@
 		18194CAF1B169D94007A3FB0 /* ATProperty */ = {
 			isa = PBXGroup;
 			children = (
+				18194CBC1B16A0AE007A3FB0 /* Category */,
 				18194CB41B169D94007A3FB0 /* ATProperty.h */,
 				18194CB51B169D94007A3FB0 /* ATProperty.m */,
 				18194CB01B169D94007A3FB0 /* Supporting Files */,
@@ -79,6 +89,35 @@
 				18194CB21B169D94007A3FB0 /* ATProperty.xcscheme */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18194CBC1B16A0AE007A3FB0 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				18194CC71B16A1EA007A3FB0 /* NSString */,
+				18194CC01B16A109007A3FB0 /* NSTextView */,
+				18194CC11B16A122007A3FB0 /* ATTextResult.h */,
+				18194CC21B16A122007A3FB0 /* ATTextResult.m */,
+			);
+			path = Category;
+			sourceTree = SOURCE_ROOT;
+		};
+		18194CC01B16A109007A3FB0 /* NSTextView */ = {
+			isa = PBXGroup;
+			children = (
+				18194CC41B16A13E007A3FB0 /* NSTextView+TextGetter.h */,
+				18194CC51B16A13E007A3FB0 /* NSTextView+TextGetter.m */,
+			);
+			path = NSTextView;
+			sourceTree = "<group>";
+		};
+		18194CC71B16A1EA007A3FB0 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				18BA9DFB1B16A24F00F471AF /* NSString+TextGetter.h */,
+				18BA9DFC1B16A24F00F471AF /* NSString+TextGetter.m */,
+			);
+			path = NSString;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +188,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				18194CB61B169D94007A3FB0 /* ATProperty.m in Sources */,
+				18194CC31B16A122007A3FB0 /* ATTextResult.m in Sources */,
+				18194CC61B16A13E007A3FB0 /* NSTextView+TextGetter.m in Sources */,
+				18BA9DFD1B16A24F00F471AF /* NSString+TextGetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +315,7 @@
 				18194CBB1B169D94007A3FB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

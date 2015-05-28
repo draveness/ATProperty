@@ -7,18 +7,20 @@
 //
 
 #import "ATProperty.h"
+#import "ATTextResult.h"
+#import "NSTextView+TextGetter.h"
 
 static ATProperty *sharedPlugin;
 
 @interface ATProperty()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
+
 @end
 
 @implementation ATProperty
 
-+ (void)pluginDidLoad:(NSBundle *)plugin
-{
++ (void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     if ([currentApplicationName isEqual:@"Xcode"]) {
@@ -28,41 +30,45 @@ static ATProperty *sharedPlugin;
     }
 }
 
-+ (instancetype)sharedPlugin
-{
++ (instancetype)sharedPlugin {
     return sharedPlugin;
 }
 
-- (id)initWithBundle:(NSBundle *)plugin
-{
+- (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
-        // reference to plugin's bundle, for resource access
         self.bundle = plugin;
-        
-        // Create menu items, initialize UI, etc.
-
-        // Sample Menu Item:
-        NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-        if (menuItem) {
-            [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""];
-            [actionMenuItem setTarget:self];
-            [[menuItem submenu] addItem:actionMenuItem];
-        }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textStorageDidChange:)
+                                                     name:NSTextDidChangeNotification
+                                                   object:nil];
     }
     return self;
 }
 
-// Sample Action, for menu item:
-- (void)doMenuAction
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"Hello, World"];
-    [alert runModal];
+- (void) textStorageDidChange:(NSNotification *)noti {
+
+    if ([[noti object] isKindOfClass:[NSTextView class]]) {
+        NSTextView *textView = (NSTextView *)[noti object];
+        ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];
+        if (currentLineResult) {
+        }
+    }
 }
 
-- (void)dealloc
-{
+- (void)addMenuItem {
+    NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+    if (menuItem) {
+        [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"@property" action:@selector(doMenuAction) keyEquivalent:@""];
+        [actionMenuItem setTarget:self];
+        [[menuItem submenu] addItem:actionMenuItem];
+    }
+}
+
+- (void)doMenuAction {
+}
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
