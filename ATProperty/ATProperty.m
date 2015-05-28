@@ -49,7 +49,7 @@ static ATProperty *sharedPlugin;
     return self;
 }
 
-- (void) textStorageDidChange:(NSNotification *)notification {
+- (void)textStorageDidChange:(NSNotification *)notification {
     if ([[notification object] isKindOfClass:[NSTextView class]]) {
         NSTextView *textView = (NSTextView *)[notification object];
         ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];

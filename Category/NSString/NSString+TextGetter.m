@@ -11,9 +11,7 @@
 
 @implementation NSString (TextGetter)
 
-
-- (ATTextResult *)at_textResultOfCurrentLineCurrentLocation:(NSInteger)location
-{
+- (ATTextResult *)at_textResultOfCurrentLineCurrentLocation:(NSInteger)location {
     NSInteger curseLocation = location;
     NSRange range = NSMakeRange(0, curseLocation);
     NSRange thisLineRange = [self rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:NSBackwardsSearch range:range];
