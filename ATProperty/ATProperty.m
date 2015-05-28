@@ -47,13 +47,14 @@ static ATProperty *sharedPlugin;
     return self;
 }
 
-- (void) textStorageDidChange:(NSNotification *)noti {
+- (void) textStorageDidChange:(NSNotification *)notification {
 
-    if ([[noti object] isKindOfClass:[NSTextView class]]) {
-        NSTextView *textView = (NSTextView *)[noti object];
+    if ([[notification object] isKindOfClass:[NSTextView class]]) {
+        NSTextView *textView = (NSTextView *)[notification object];
         ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];
         if ([self shouldTrigger:currentLineResult.string]) {
-            [textView setSelectedRange:NSMakeRange(textView.at_currentCurseLocation - 2, 2)];
+            NSUInteger length = currentLineResult.string.length;
+            [textView setSelectedRange:NSMakeRange(textView.at_currentCurseLocation - length, length)];
             [textView insertText:[self insertTextWithType:currentLineResult.string]];
         }
     }
