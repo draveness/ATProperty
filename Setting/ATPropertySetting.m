@@ -15,6 +15,7 @@ NSString *const kATPCopyTriggerString   = @"@c";
 
 NSString *const kATPUseNonatomic = @"com.draveness.ATProperty.useNonatomic";
 NSString *const kATPAtomicityPrefix = @"com.draveness.ATProperty.atomicityPrefix";
+NSString *const kATPEnabled = @"com.draveness.ATProperty.enabled";
 
 @implementation ATPropertySetting
 
@@ -25,7 +26,8 @@ NSString *const kATPAtomicityPrefix = @"com.draveness.ATProperty.atomicityPrefix
         defaultSetting = [[ATPropertySetting alloc] init];
 
         NSDictionary *defaults = @{kATPAtomicityPrefix: @YES,
-                                   kATPUseNonatomic: @YES};
+                                   kATPUseNonatomic: @YES,
+                                   kATPEnabled: @YES};
         [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     });
     return defaultSetting;
@@ -46,6 +48,15 @@ NSString *const kATPAtomicityPrefix = @"com.draveness.ATProperty.atomicityPrefix
 
 - (void)setAtomicityPrefix:(BOOL)atomicityPrefix {
     [[NSUserDefaults standardUserDefaults] setBool:atomicityPrefix forKey:kATPAtomicityPrefix];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)enabled {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kATPEnabled];
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:kATPEnabled];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

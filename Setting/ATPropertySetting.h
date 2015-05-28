@@ -19,5 +19,6 @@ extern NSString *const kATPCopyTriggerString;
 
 @property (nonatomic, assign) BOOL useNonatomic;
 @property (nonatomic, assign) BOOL atomicityPrefix;
+@property (nonatomic, assign) BOOL enabled;
 
 @end
