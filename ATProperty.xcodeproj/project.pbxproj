@@ -14,6 +14,7 @@
 		18194CC31B16A122007A3FB0 /* ATTextResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18194CC21B16A122007A3FB0 /* ATTextResult.m */; };
 		18194CC61B16A13E007A3FB0 /* NSTextView+TextGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18194CC51B16A13E007A3FB0 /* NSTextView+TextGetter.m */; };
 		18BA9DFD1B16A24F00F471AF /* NSString+TextGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA9DFC1B16A24F00F471AF /* NSString+TextGetter.m */; };
+		18BA9E501B16ACB300F471AF /* ATPropertySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA9E4F1B16ACB300F471AF /* ATPropertySetting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		18194CC51B16A13E007A3FB0 /* NSTextView+TextGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+TextGetter.m"; sourceTree = "<group>"; };
 		18BA9DFB1B16A24F00F471AF /* NSString+TextGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextGetter.h"; sourceTree = "<group>"; };
 		18BA9DFC1B16A24F00F471AF /* NSString+TextGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextGetter.m"; sourceTree = "<group>"; };
+		18BA9E4E1B16ACB300F471AF /* ATPropertySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPropertySetting.h; sourceTree = "<group>"; };
+		18BA9E4F1B16ACB300F471AF /* ATPropertySetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPropertySetting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,7 @@
 		18194CAF1B169D94007A3FB0 /* ATProperty */ = {
 			isa = PBXGroup;
 			children = (
+				18BA9E4D1B16ACA700F471AF /* Setting */,
 				18194CBC1B16A0AE007A3FB0 /* Category */,
 				18194CB41B169D94007A3FB0 /* ATProperty.h */,
 				18194CB51B169D94007A3FB0 /* ATProperty.m */,
@@ -119,6 +123,15 @@
 			);
 			path = NSString;
 			sourceTree = "<group>";
+		};
+		18BA9E4D1B16ACA700F471AF /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				18BA9E4E1B16ACB300F471AF /* ATPropertySetting.h */,
+				18BA9E4F1B16ACB300F471AF /* ATPropertySetting.m */,
+			);
+			path = Setting;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -187,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BA9E501B16ACB300F471AF /* ATPropertySetting.m in Sources */,
 				18194CB61B169D94007A3FB0 /* ATProperty.m in Sources */,
 				18194CC31B16A122007A3FB0 /* ATTextResult.m in Sources */,
 				18194CC61B16A13E007A3FB0 /* NSTextView+TextGetter.m in Sources */,

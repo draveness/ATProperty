@@ -8,6 +8,7 @@
 
 #import "ATProperty.h"
 #import "ATTextResult.h"
+#import "ATPropertySetting.h"
 #import "NSTextView+TextGetter.h"
 
 static ATProperty *sharedPlugin;
@@ -51,8 +52,23 @@ static ATProperty *sharedPlugin;
         NSTextView *textView = (NSTextView *)[noti object];
         ATTextResult *currentLineResult = [textView at_textResultOfCurrentLine];
         if (currentLineResult) {
+            [textView setSelectedRange:NSMakeRange(textView.at_currentCurseLocation - 2, 2)];
+            [textView insertText:[self insertTextWithType:currentLineResult.string]];
         }
     }
+}
+
+- (NSString *)insertTextWithType:(NSString *)type {
+    if ([type isEqualToString:kATPStrongTriggerString]) {
+        return @"@property (nonatomic, strong) <#type#> *<#value#>;";
+    } else if ([type isEqualToString:kATPWeakTriggerString]) {
+        return @"@property (nonatomic, weak) <#type#> *<#value#>;";
+    } else if ([type isEqualToString:kATPCopyTriggerString]) {
+        return @"@property (nonatomic, copy) <#type#> *<#value#>;";
+    } else if ([type isEqualToString:kATPAssignTriggerString]) {
+        return @"@property (nonatomic, assign) <#type#> <#value#>;";
+    }
+    return nil;
 }
 
 - (void)addMenuItem {
