@@ -10,6 +10,7 @@
 #import "ATTextResult.h"
 #import "ATPropertySetting.h"
 #import "NSTextView+TextGetter.h"
+#import "NSString+TextGetter.h"
 #import "ATPropertySetting.h"
 
 static ATProperty *sharedPlugin;
@@ -84,52 +85,35 @@ static ATProperty *sharedPlugin;
 }
 
 - (NSString *)modifiedSymbolTupleWithType:(NSString *)type {
-    NSMutableString *string;
+    NSMutableString *string = [[NSMutableString alloc] initWithString:@"("];
     if ([[ATPropertySetting defaultSetting] useNonatomic]) {
-        if ([[ATPropertySetting defaultSetting] atomicityPrefix]) {
-            if ([type isEqualToString:kATPStrongTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(nonatomic, strong"];
-            } else if ([type isEqualToString:kATPWeakTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(nonatomic, weak"];
-            } else if ([type isEqualToString:kATPCopyTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(nonatomic, copy"];
-            } else if ([type isEqualToString:kATPAssignTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(nonatomic, assign"];
-            }
-        } else {
-            if ([type isEqualToString:kATPStrongTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(strong, nonatomic"];
-            } else if ([type isEqualToString:kATPWeakTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(weak, nonatomic"];
-            } else if ([type isEqualToString:kATPCopyTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(copy, nonatomic"];
-            } else if ([type isEqualToString:kATPAssignTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(assign, nonatomic"];
-            }
+        [string appendString:@"nonatomic"];
+    } else {
+        [string appendString:@"atomic"];
+    }
+
+    if ([[ATPropertySetting defaultSetting] atomicityPrefix]) {
+        if ([type isTriggerString:kATPStrongTriggerString]) {
+            [string appendString:@", strong"];
+        } else if ([type isTriggerString:kATPWeakTriggerString]) {
+            [string appendString:@", weak"];
+        } else if ([type isTriggerString:kATPCopyTriggerString]) {
+            [string appendString:@", copy"];
+        } else if ([type isTriggerString:kATPAssignTriggerString]) {
+            [string appendString:@", assign"];
         }
     } else {
-        if ([[ATPropertySetting defaultSetting] atomicityPrefix]) {
-            if ([type isEqualToString:kATPStrongTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(atomic, strong"];
-            } else if ([type isEqualToString:kATPWeakTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(atomic, weak"];
-            } else if ([type isEqualToString:kATPCopyTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(atomic, copy"];
-            } else if ([type isEqualToString:kATPAssignTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(atomic, assign"];
-            }
-        } else {
-            if ([type isEqualToString:kATPStrongTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(strong, atomic"];
-            } else if ([type isEqualToString:kATPWeakTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(weak, atomic"];
-            } else if ([type isEqualToString:kATPCopyTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(copy, atomic"];
-            } else if ([type isEqualToString:kATPAssignTriggerString]) {
-                string = [[NSMutableString alloc] initWithString:@"(assign, atomic"];
-            }
+        if ([type isTriggerString:kATPStrongTriggerString]) {
+            [string insertString:@"strong, " atIndex:1];
+        } else if ([type isTriggerString:kATPWeakTriggerString]) {
+            [string insertString:@"weak, " atIndex:1];
+        } else if ([type isTriggerString:kATPCopyTriggerString]) {
+            [string insertString:@"copy, " atIndex:1];
+        } else if ([type isTriggerString:kATPAssignTriggerString]) {
+            [string insertString:@"assign, " atIndex:1];
         }
     }
+
     if ([self isReadonly:type]) {
         [string appendString:@", readonly) "];
     } else if ([self isReadWrite:type]) {
@@ -144,6 +128,7 @@ static ATProperty *sharedPlugin;
     }
     return string;
 }
+
 
 - (BOOL)isReadonly:(NSString *)type {
     return [[type substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"r"];

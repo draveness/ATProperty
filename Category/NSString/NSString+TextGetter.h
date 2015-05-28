@@ -14,4 +14,6 @@
 
 - (ATTextResult *)at_textResultOfCurrentLineCurrentLocation:(NSInteger)location;
 
+- (BOOL)isTriggerString:(NSString *)string;
+
 @end

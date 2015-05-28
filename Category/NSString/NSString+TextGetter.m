@@ -32,4 +32,20 @@
     }
 }
 
+- (BOOL)isTriggerString:(NSString *)string {
+    if ([self isEqualToString:string]) {
+        return YES;
+    }
+    if (self.length == 3) {
+        NSString *prefix = [self substringToIndex:1];
+        NSString *suffix = [self substringFromIndex:2];
+        NSString *concatString = [NSString stringWithFormat:@"%@%@", prefix, suffix];
+        if ([concatString isEqualToString:string]) {
+            return YES;
+        }
+    }
+    return NO;
+
+}
+
 @end
