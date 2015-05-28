@@ -14,17 +14,17 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="ATProperty Setting" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="188" height="138"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="contentRect" x="196" y="240" width="232" height="145"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="-2" width="188" height="138"/>
+                <rect key="frame" x="0.0" y="0.0" width="232" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyC-zY-Qxx">
-                        <rect key="frame" x="35" y="77" width="135" height="18"/>
+                        <rect key="frame" x="35" y="84" width="135" height="18"/>
                         <buttonCell key="cell" type="check" title="Use nonatomic" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="W6l-9t-V5o">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -34,7 +34,7 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-7s-Ywb">
-                        <rect key="frame" x="35" y="48" width="129" height="18"/>
+                        <rect key="frame" x="35" y="55" width="129" height="18"/>
                         <buttonCell key="cell" type="check" title="Atomicity Prefix" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="11i-3p-3zL">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -43,18 +43,8 @@
                             <action selector="btnAtomicityPrefixPressed:" target="-2" id="eAa-CM-NG2"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Et5-r9-heH">
-                        <rect key="frame" x="38" y="6" width="123" height="32"/>
-                        <buttonCell key="cell" type="push" title="Reset Default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OKR-Cn-xSW">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="btnResetPressed:" target="-2" id="gof-FY-3kM"/>
-                        </connections>
-                    </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Uq-Te-ztA">
-                        <rect key="frame" x="35" y="106" width="107" height="18"/>
+                        <rect key="frame" x="35" y="113" width="107" height="18"/>
                         <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3do-Eg-mlX">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -63,12 +53,22 @@
                             <action selector="btnEnabledPressed:" target="-2" id="Iww-VU-uJU"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Et5-r9-heH">
+                        <rect key="frame" x="55" y="13" width="123" height="32"/>
+                        <buttonCell key="cell" type="push" title="Reset Default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OKR-Cn-xSW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="btnResetPressed:" target="-2" id="gof-FY-3kM"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="237" y="324"/>
+            <point key="canvasLocation" x="259" y="327.5"/>
         </window>
     </objects>
 </document>

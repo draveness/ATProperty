@@ -12,7 +12,7 @@ You just needs to type `@s` like this.
 
 The best way to install this is use [Alcatraz](http://alcatraz.io/). Install Alcatraz followed by the instruction, restart your Xcode. You can find `ATProperty` in the list. Just click the install button.
 
-You can also clone the repo and build the target. ANd the plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. Relaunch Xcode, and you can use this to create property.
+You can also clone the repo and build the target. And the plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. Relaunch Xcode, and you can use this to create property.
 
 ## Usage
 
@@ -44,6 +44,18 @@ This plug-in is extremely easy to use.
 |@xw        | @property (nonatomic, weak, readwrite)   |
 |@xc        | @property (nonatomic, copy, readwrite)   |
 |@xa        | @property (nonatomic, assign, readwrite) |
+
+## Customize
+
+You can customize the `ATProperty` plugin in menu:
+
+```
+Edit => ATProperty
+```
+
+![ATProperty Setting](setting.png)
+
+You can disabled it by clicking the checkbox ahead `Enabled` label. Changing default atomicity to atomic or modifier symbol order are also allowed.
 
 ----
 
