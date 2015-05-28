@@ -44,6 +44,7 @@ static ATProperty *sharedPlugin;
                                                  selector:@selector(textStorageDidChange:)
                                                      name:NSTextDidChangeNotification
                                                    object:nil];
+        [self addMenuItem];
     }
     return self;
 }
