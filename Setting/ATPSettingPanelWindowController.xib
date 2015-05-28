@@ -6,6 +6,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATPSettingPanelWindowController">
             <connections>
+                <outlet property="atomicityPrefix" destination="XHq-7s-Ywb" id="vXh-kl-UcL"/>
+                <outlet property="btnUseNonatomic" destination="JyC-zY-Qxx" id="gBT-gF-WIe"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -14,15 +16,48 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="contentRect" x="196" y="240" width="188" height="112"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="5" width="188" height="112"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyC-zY-Qxx">
+                        <rect key="frame" x="35" y="76" width="135" height="18"/>
+                        <buttonCell key="cell" type="check" title="Use nonatomic" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="W6l-9t-V5o">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="btnUseNonatomicPressed:" target="-2" id="LOS-74-gln"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-7s-Ywb">
+                        <rect key="frame" x="35" y="51" width="129" height="18"/>
+                        <buttonCell key="cell" type="check" title="Atomicity Prefix" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="11i-3p-3zL">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="btnAtomicityPrefixPressed:" target="-2" id="eAa-CM-NG2"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Et5-r9-heH">
+                        <rect key="frame" x="38" y="13" width="123" height="32"/>
+                        <buttonCell key="cell" type="push" title="Reset Default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OKR-Cn-xSW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="btnResetPressed:" target="-2" id="gof-FY-3kM"/>
+                        </connections>
+                    </button>
+                </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
+            <point key="canvasLocation" x="237" y="311"/>
         </window>
     </objects>
 </document>
