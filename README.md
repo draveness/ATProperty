@@ -55,7 +55,7 @@ You can customize the `ATProperty` plugin in menu:
 Edit => ATProperty
 ```
 
-![ATProperty Setting](./image/setting.png)
+![ATProperty Setting](./image/Setting.png)
 
 You can disabled it by clicking the checkbox ahead `Enabled` label. Changing default atomicity to atomic or modifier symbol order are also allowed.
 
@@ -68,7 +68,6 @@ Feel free to open an issue or pull request, if you need help or there is a bug.
 # Contact
 
 - Powered by [Draveness](http://github.com/draveness)
-- Personal website [DeltaX](http://deltax.me)
 
 # License
 
