@@ -47,6 +47,13 @@ This plug-in is extremely easy to use.
 |@xc        | @property (nonatomic, copy, readwrite)   |
 |@xa        | @property (nonatomic, assign, readwrite) |
 
+
+### Outlet
+
+| typein   | result |
+| :------- |:-----------------------------|
+|@iw        | @property IBOutlet (nonatomic, weak) |
+
 ## Customize
 
 You can customize the `ATProperty` plugin in menu:
