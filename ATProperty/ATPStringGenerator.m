@@ -18,8 +18,10 @@
     for (NSString *string in array) {
         NSString *readTriggerString = [NSString stringWithFormat:@"@r%@",[string substringFromIndex:1]];
         NSString *writeTriggerString = [NSString stringWithFormat:@"@x%@",[string substringFromIndex:1]];
+        NSString *outletTriggerString = @"@iw";
         [readWriteArray addObject:readTriggerString];
         [readWriteArray addObject:writeTriggerString];
+		[readWriteArray addObject:outletTriggerString];
     }
     [array addObjectsFromArray:readWriteArray];
     for (NSString *string in array) {
@@ -47,7 +49,7 @@
     if ([[ATPropertySetting defaultSetting] atomicityPrefix]) {
         if ([type isTriggerString:kATPStrongTriggerString]) {
             [string appendString:@", strong"];
-        } else if ([type isTriggerString:kATPWeakTriggerString]) {
+        } else if ([type isTriggerString:kATPWeakTriggerString] || [self isOutlet:type]) {
             [string appendString:@", weak"];
         } else if ([type isTriggerString:kATPCopyTriggerString]) {
             [string appendString:@", copy"];
@@ -76,6 +78,9 @@
     if ([type isEqualToString:kATPAssignTriggerString]) {
         [string appendString:@"<#type#> <#value#>;"];
     } else {
+        if ([self isOutlet:type]) {
+            [string appendString:@"IBOutlet "];
+        }
         [string appendString:@"<#type#> *<#value#>;"];
     }
     return string;
@@ -88,6 +93,10 @@
 
 + (BOOL)isReadWrite:(NSString *)type {
     return [[type substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"x"];
+}
+
++ (BOOL)isOutlet:(NSString *)type {
+    return [type rangeOfString:@"iw"].length > 0;
 }
 
 
