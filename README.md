@@ -26,7 +26,7 @@ This plug-in is extremely easy to use.
 | :------- |:-----------------------------|
 |@s        | @property (nonatomic, strong) |
 |@w        | @property (nonatomic, weak)   |
-|@c        | @property (nonatomic, copy)   |
+|@y        | @property (nonatomic, copy)   |
 |@a        | @property (nonatomic, assign) |
 
 ### Readonly
@@ -35,7 +35,7 @@ This plug-in is extremely easy to use.
 | :------- |:-----------------------------|
 |@rs        | @property (nonatomic, strong, readonly) |
 |@rw        | @property (nonatomic, weak, readonly)   |
-|@rc        | @property (nonatomic, copy, readonly)   |
+|@ry        | @property (nonatomic, copy, readonly)   |
 |@ra        | @property (nonatomic, assign, readonly) |
 
 ### Readwrite
@@ -44,7 +44,7 @@ This plug-in is extremely easy to use.
 | :------- |:-----------------------------|
 |@xs        | @property (nonatomic, strong, readwrite) |
 |@xw        | @property (nonatomic, weak, readwrite)   |
-|@xc        | @property (nonatomic, copy, readwrite)   |
+|@xy        | @property (nonatomic, copy, readwrite)   |
 |@xa        | @property (nonatomic, assign, readwrite) |
 
 

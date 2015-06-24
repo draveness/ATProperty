@@ -11,7 +11,7 @@
 NSString *const kATPStrongTriggerString = @"@s";
 NSString *const kATPAssignTriggerString = @"@a";
 NSString *const kATPWeakTriggerString   = @"@w";
-NSString *const kATPCopyTriggerString   = @"@c";
+NSString *const kATPCopyTriggerString   = @"@y";
 
 NSString *const kATPUseNonatomic = @"com.draveness.ATProperty.useNonatomic";
 NSString *const kATPAtomicityPrefix = @"com.draveness.ATProperty.atomicityPrefix";
