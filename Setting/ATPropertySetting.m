@@ -8,7 +8,7 @@
 
 #import "ATPropertySetting.h"
 
-NSString *const kATPStrongTriggerString = @"@s";
+NSString *const kATPStrongTriggerString = @"@t";
 NSString *const kATPAssignTriggerString = @"@a";
 NSString *const kATPWeakTriggerString   = @"@w";
 NSString *const kATPCopyTriggerString   = @"@y";
