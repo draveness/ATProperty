@@ -4,7 +4,7 @@
 
 This is a convenient and fast approach to create property. You do not need to type `@property` and `nonatomic` when you declare a property.
 
-You just needs to type `@s` like this.
+You just needs to type `@t` like this.
 
 ![Demo](./image/Demo.gif)
 
@@ -24,7 +24,7 @@ This plug-in is extremely easy to use.
 
 | typein   | result |
 | :------- |:-----------------------------|
-|@s        | @property (nonatomic, strong) |
+|@t        | @property (nonatomic, strong) |
 |@w        | @property (nonatomic, weak)   |
 |@y        | @property (nonatomic, copy)   |
 |@a        | @property (nonatomic, assign) |
@@ -33,7 +33,7 @@ This plug-in is extremely easy to use.
 
 | typein   | result |
 | :------- |:-----------------------------|
-|@rs        | @property (nonatomic, strong, readonly) |
+|@rt        | @property (nonatomic, strong, readonly) |
 |@rw        | @property (nonatomic, weak, readonly)   |
 |@ry        | @property (nonatomic, copy, readonly)   |
 |@ra        | @property (nonatomic, assign, readonly) |
@@ -42,7 +42,7 @@ This plug-in is extremely easy to use.
 
 | typein   | result |
 | :------- |:-----------------------------|
-|@xs        | @property (nonatomic, strong, readwrite) |
+|@xt        | @property (nonatomic, strong, readwrite) |
 |@xw        | @property (nonatomic, weak, readwrite)   |
 |@xy        | @property (nonatomic, copy, readwrite)   |
 |@xa        | @property (nonatomic, assign, readwrite) |
