@@ -45,9 +45,26 @@ static ATProperty *sharedPlugin;
                                                  selector:@selector(textStorageDidChange:)
                                                      name:NSTextDidChangeNotification
                                                    object:nil];
-        [self addMenuItem];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didApplicationFinishLaunchingNotification:)
+                                                     name:NSApplicationDidFinishLaunchingNotification
+                                                   object:nil];
     }
     return self;
+}
+
+- (void)didApplicationFinishLaunchingNotification:(NSNotification*)noti
+{
+    //removeObserver
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
+    
+    NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+    if (menuItem) {
+        [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"ATProperty" action:@selector(showSettingPanel) keyEquivalent:@""];
+        [actionMenuItem setTarget:self];
+        [[menuItem submenu] addItem:actionMenuItem];
+    }
 }
 
 - (void)textStorageDidChange:(NSNotification *)notification {
@@ -59,16 +76,6 @@ static ATProperty *sharedPlugin;
             [textView setSelectedRange:NSMakeRange(textView.at_currentCurseLocation - length, length)];
             [textView insertText:[ATPStringGenerator insertTextWithType:currentLineResult.string]];
         }
-    }
-}
-
-- (void)addMenuItem {
-    NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-    if (menuItem) {
-        [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"ATProperty" action:@selector(showSettingPanel) keyEquivalent:@""];
-        [actionMenuItem setTarget:self];
-        [[menuItem submenu] addItem:actionMenuItem];
     }
 }
 
