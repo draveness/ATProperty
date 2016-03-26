@@ -53,8 +53,7 @@ static ATProperty *sharedPlugin;
     return self;
 }
 
-- (void)didApplicationFinishLaunchingNotification:(NSNotification*)noti
-{
+- (void)didApplicationFinishLaunchingNotification:(NSNotification*)notification {
     //removeObserver
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
